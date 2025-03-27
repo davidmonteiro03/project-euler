@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2025/03/27 16:28:58 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/03/27 17:52:19 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ O_EXT    = .o
 
 # === FILES ================================================================== #
 
-CFILES   = solution/init solution/execute
+CFILES   = solution/init solution/fill solution/execute
 HFILES   = $(NAME) solution
 
 INCS     = $(addprefix $(INCS_D)/, \

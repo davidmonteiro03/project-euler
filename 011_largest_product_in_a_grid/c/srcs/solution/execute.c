@@ -6,112 +6,146 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:13:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/03/27 17:03:48 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/03/27 18:43:27 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/solve_c.h"
 
-static int	fwrite_grid(FILE *f, long long int grid[20][20], size_t m, size_t n)
+static long long int	compute_max_horiz_prod(t_solution *solution, size_t len)
 {
-	size_t	i;
-	size_t	j;
-	int		ret;
-
-	if (f == NULL)
-		return (EX__BASE);
-	i = 0;
-	while (i < m)
-	{
-		j = 0;
-		while (j < n)
-		{
-			ret = fscanf(f, "%lld", &grid[i][j]);
-			if (ret != 1)
-				return (EX__BASE);
-			j++;
-		}
-		i++;
-	}
-	return (EX_OK);
-}
-
-static long long int	compute_product(long long int grid[20][20], size_t i,
-		size_t j, size_t type)
-{
-	if (type == 0)
-		return (grid[i][j] * grid[i][j + 1] * grid[i][j + 2] * grid[i][j + 3]);
-	if (type == 1)
-		return (grid[i][j] * grid[i + 1][j] * grid[i + 2][j] * grid[i + 3][j]);
-	if (type == 2)
-		return (grid[i][j] * grid[i + 1][j + 1] * grid[i + 2][j + 2] * grid[i
-			+ 3][j + 3]);
-	return (grid[i][j + 3] * grid[i + 1][j + 2] * grid[i + 2][j + 1] * grid[i
-		+ 3][j]);
-}
-
-static long long int	find_largest_grid_product(long long int grid[20][20],
-		size_t m, size_t n)
-{
-	size_t			p[3];
-	long long int	prods[4];
+	size_t			i;
+	size_t			j;
+	size_t			k;
+	long long int	prod;
 	long long int	result;
 
+	if (solution == NULL || len == 0)
+		return (0);
 	result = 0;
-	p[0] = 0;
-	while (p[0] < m - 3)
+	i = -1;
+	while (++i < solution->m - len + 1)
 	{
-		p[1] = 0;
-		while (p[1] < n - 3)
+		j = -1;
+		while (++j < solution->n - len + 1)
 		{
-			p[2] = 0;
-			while (p[2] < 4)
-			{
-				prods[p[2]] = compute_product(grid, p[0], p[1], p[2]);
-				if (prods[p[2]] > result)
-					result = prods[p[2]];
-				p[2]++;
-			}
-			p[1]++;
+			prod = 1;
+			k = -1;
+			while (++k < len)
+				prod *= solution->grid[i][j + k];
+			if (prod > result)
+				result = prod;
 		}
-		p[0]++;
 	}
 	return (result);
 }
 
-static void	solve(char *filename)
+static long long int	compute_max_vert_prod(t_solution *solution, size_t len)
 {
-	long long int	solution;
-	FILE			*f;
-	long long int	grid[20][20];
-	size_t			m;
-	size_t			n;
+	size_t			i;
+	size_t			j;
+	size_t			k;
+	long long int	prod;
+	long long int	result;
 
-	solution = 0;
-	if (filename == NULL)
-		return (g_exit_status = EX__BASE, (void)0);
-	f = fopen(filename, "r");
-	if (f == NULL)
-		return (g_exit_status = EX__BASE, (void)0);
-	bzero(grid, sizeof(grid));
-	m = sizeof(grid) / sizeof(grid[0]);
-	n = sizeof(grid[0]) / sizeof(grid[0][0]);
-	if (fwrite_grid(f, grid, m, n) != EX_OK)
-		return (fclose(f), g_exit_status = EX__BASE, (void)0);
-	fclose(f);
-	solution = find_largest_grid_product(grid, m, n);
-	fprintf(stdout, "Solution for \"%s\": %lld\n", filename, solution);
+	if (solution == NULL || len == 0)
+		return (0);
+	result = 0;
+	i = -1;
+	while (++i < solution->m - len + 1)
+	{
+		j = -1;
+		while (++j < solution->n - len + 1)
+		{
+			prod = 1;
+			k = -1;
+			while (++k < len)
+				prod *= solution->grid[i + k][j];
+			if (prod > result)
+				result = prod;
+		}
+	}
+	return (result);
+}
+
+static long long int	compute_max_diag_prod(t_solution *solution, size_t len)
+{
+	size_t			i;
+	size_t			j;
+	size_t			k;
+	long long int	prod;
+	long long int	result;
+
+	if (solution == NULL || len == 0)
+		return (0);
+	result = 0;
+	i = -1;
+	while (++i < solution->m - len + 1)
+	{
+		j = -1;
+		while (++j < solution->n - len + 1)
+		{
+			prod = 1;
+			k = -1;
+			while (++k < len)
+				prod *= solution->grid[i + k][j + k];
+			if (prod > result)
+				result = prod;
+		}
+	}
+	return (result);
+}
+
+static long long int	compute_max_rdiag_prod(t_solution *solution, size_t len)
+{
+	size_t			i;
+	size_t			j;
+	size_t			k;
+	long long int	prod;
+	long long int	result;
+
+	if (solution == NULL || len == 0)
+		return (0);
+	result = 0;
+	i = -1;
+	while (++i < solution->m - len + 1)
+	{
+		j = -1;
+		while (++j < solution->n - len + 1)
+		{
+			prod = 1;
+			k = -1;
+			while (++k < len)
+				prod *= solution->grid[i + k][j + len - k - 1];
+			if (prod > result)
+				result = prod;
+		}
+	}
+	return (result);
 }
 
 void	solution_execute(t_solution *solution)
 {
+	long long int	result;
+	long long int	max_horiz_prod;
+	long long int	max_vert_prod;
+	long long int	max_diag_prod;
+	long long int	max_rdiag_prod;
+
 	if (solution == NULL)
 		return ;
-	if (solution->argc != 2)
-	{
-		fprintf(stderr, "usage: %s <n>\n", solution->argv[0]);
-		g_exit_status = EX_USAGE;
-		return ;
-	}
-	solve(solution->argv[1]);
+	result = 0;
+	max_horiz_prod = compute_max_horiz_prod(solution, 4);
+	max_vert_prod = compute_max_vert_prod(solution, 4);
+	max_diag_prod = compute_max_diag_prod(solution, 4);
+	max_rdiag_prod = compute_max_rdiag_prod(solution, 4);
+	if (max_horiz_prod > result)
+		result = max_horiz_prod;
+	if (max_vert_prod > result)
+		result = max_vert_prod;
+	if (max_diag_prod > result)
+		result = max_diag_prod;
+	if (max_rdiag_prod > result)
+		result = max_rdiag_prod;
+	fprintf(stdout, "Solution for \"%s\": %lld\n", solution->argv[1], result);
 }
