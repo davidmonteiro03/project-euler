@@ -6,11 +6,13 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 08:55:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/03/26 10:17:34 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:42:20 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/solve_c.h"
+
+int	g_exit_status = EX_OK;
 
 int	main(int argc, char **argv)
 {
@@ -18,5 +20,5 @@ int	main(int argc, char **argv)
 
 	solution_init(&solution, argc, argv);
 	solution_execute(&solution);
-	return (EXIT_SUCCESS);
+	return (g_exit_status);
 }

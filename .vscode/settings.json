@@ -55,6 +55,12 @@
 		"utils.h": "c",
 		"solve_c.h": "c",
 		"stdlib.h": "c",
-		"string.h": "c"
+		"string.h": "c",
+		"strings.h": "c",
+		"types.h": "c",
+		"cstring": "cpp",
+		"sysexits.h": "c",
+		"stdio.h": "c",
+		"cerrno": "c"
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:20:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/03/27 07:22:32 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/03/27 15:24:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ private:
 	char **__argv;
 
 	static long long int __getLimit(const long long int &);
-	static long long int __updateSolution(const long long int &, const long long int &, const long long int &);
+	static long long int __updateSolution(const long long int &,
+										  const long long int &,
+										  const long long int &);
 
 	static void __solve(const long long int &);
 };

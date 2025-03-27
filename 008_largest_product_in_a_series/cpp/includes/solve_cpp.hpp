@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:23:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/03/27 10:18:38 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/03/27 15:53:08 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 #include <iostream>
 #include <sstream>
 #include <cstring>
+
+extern "C"
+{
+#include <sysexits.h>
+}
 
 class Solution;
 
@@ -41,3 +46,5 @@ class Solution;
 84580156166097919133875499200524063689912560717606\
 05886116467109405077541002256983155200055935729725\
 71636269561882670428252483600823257530420752963450"
+
+extern int gExitStatus;

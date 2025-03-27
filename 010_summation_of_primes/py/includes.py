@@ -1,3 +1,8 @@
+import solve_py
+import os
+import sys
+
+
 class Solution:
     def __init__(self, argc: int, argv: list[str]):
         self.__argc = argc
@@ -25,20 +30,24 @@ class Solution:
         while next_prime < n:
             solution += next_prime
             next_prime = Solution.find_next_prime(next_prime + 1)
-        print(f"Solution for {n}: {solution}")
+        print("Solution for {0}: {1}".format(
+            n, solution
+        ), file=sys.stdout)
 
     def execute(self) -> None:
-        n: int = 0
         if self.__argc < 2:
-            try:
-                n = int(input())
-            except Exception:
-                pass
-            Solution.__solve(n)
+            print("usage: {0} <n>".format(
+                self.__argv[0]
+            ), file=sys.stderr)
+            solve_py.g_exit_status = os.EX_USAGE
             return
-        for i in range(1, self.__argc, 1):
-            try:
-                n = int(self.__argv[i])
-            except Exception:
-                pass
-            Solution.__solve(n)
+        n: int = 0
+        try:
+            n = int(self.__argv[1])
+        except Exception:
+            print("{0}: error: '{1}' is not an integer.".format(
+                self.__argv[0], self.__argv[1]
+            ), file=sys.stderr)
+            solve_py.g_exit_status = os.EX_DATAERR
+            return
+        Solution.__solve(n)

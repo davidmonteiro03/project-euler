@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 09:41:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/03/26 10:17:52 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:42:42 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "solution.h"
 # include <stdio.h>
-# include <stdlib.h>
+# include <sysexits.h>
+
+extern int	g_exit_status;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:25:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/03/27 08:27:27 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/03/27 15:38:16 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,29 @@ Solution::~Solution() {}
 
 void Solution::__solve(const long long int &n)
 {
+	long long int solution = 0;
 	long long int defaultSum = n * (n + 1) / 2;
 	long long int sumOfSquares = (n * (n + 1) * (2 * n + 1)) / 6;
 	long long int squareOfSum = defaultSum * defaultSum;
-	long long int solution = squareOfSum - sumOfSquares;
+	solution = squareOfSum - sumOfSquares;
 	std::cout << "Solution for " << n << ": " << solution << std::endl;
 }
 
 void Solution::execute(void) const
 {
-	long long int n = 0;
 	if (this->__argc < 2)
 	{
-		std::cin >> n;
-		Solution::__solve(n);
+		std::cerr << "usage: " << this->__argv[0] << " <n>" << std::endl;
+		gExitStatus = EX_USAGE;
 		return;
 	}
-	for (int i = 1; i < this->__argc; i++)
+	long long int n = 0;
+	std::stringstream tmp(this->__argv[1]);
+	if (!(tmp >> n))
 	{
-		std::stringstream tmp(this->__argv[i++]);
-		tmp >> n;
-		Solution::__solve(n);
+		std::cerr << this->__argv[0] << ": error: '" << this->__argv[1] << "' is not an integer." << std::endl;
+		gExitStatus = EX_DATAERR;
+		return;
 	}
+	Solution::__solve(n);
 }

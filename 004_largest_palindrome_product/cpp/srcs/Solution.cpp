@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:25:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/03/27 07:22:48 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/03/27 15:25:18 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ long long int Solution::__getLimit(const long long int &n)
 	return limit;
 }
 
-long long int Solution::__updateSolution(const long long int &solution, const long long int &i, const long long int &j)
+long long int Solution::__updateSolution(const long long int &solution,
+										 const long long int &i,
+										 const long long int &j)
 {
 	std::stringstream buf;
 	buf << i * j;
@@ -72,17 +74,19 @@ void Solution::__solve(const long long int &n)
 
 void Solution::execute(void) const
 {
-	long long int n = 0;
 	if (this->__argc < 2)
 	{
-		std::cin >> n;
-		Solution::__solve(n);
+		std::cerr << "usage: " << this->__argv[0] << " <n>" << std::endl;
+		gExitStatus = EX_USAGE;
 		return;
 	}
-	for (int i = 1; i < this->__argc; i++)
+	long long int n = 0;
+	std::stringstream tmp(this->__argv[1]);
+	if (!(tmp >> n))
 	{
-		std::stringstream tmp(this->__argv[i++]);
-		tmp >> n;
-		Solution::__solve(n);
+		std::cerr << this->__argv[0] << ": error: '" << this->__argv[1] << "' is not an integer." << std::endl;
+		gExitStatus = EX_DATAERR;
+		return;
 	}
+	Solution::__solve(n);
 }
