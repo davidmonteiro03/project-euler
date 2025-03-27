@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:13:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/03/27 17:01:08 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/03/27 17:03:48 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static void	solve(char *filename)
 	bzero(grid, sizeof(grid));
 	m = sizeof(grid) / sizeof(grid[0]);
 	n = sizeof(grid[0]) / sizeof(grid[0][0]);
-	if (fwrite_grid(f, grid, m, sizeof(grid[0]) / sizeof(grid[0][0])) != EX_OK)
+	if (fwrite_grid(f, grid, m, n) != EX_OK)
 		return (fclose(f), g_exit_status = EX__BASE, (void)0);
 	fclose(f);
 	solution = find_largest_grid_product(grid, m, n);
