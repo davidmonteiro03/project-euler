@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 17:51:48 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/03/27 17:59:59 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/03/27 22:49:17 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	solution_fill(t_solution *solution)
 		return ;
 	if (solution->argc != 2)
 	{
-		fprintf(stderr, "usage: %s <n>\n", solution->argv[0]);
+		fprintf(stderr, "usage: %s <filename>\n", solution->argv[0]);
 		g_exit_status = EX_USAGE;
 		return ;
 	}

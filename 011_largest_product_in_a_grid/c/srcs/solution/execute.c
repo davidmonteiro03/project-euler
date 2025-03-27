@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:13:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/03/27 18:43:27 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/03/27 21:16:33 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void	solution_execute(t_solution *solution)
 	long long int	max_diag_prod;
 	long long int	max_rdiag_prod;
 
-	if (solution == NULL)
+	if (solution == NULL || g_exit_status != EX_OK)
 		return ;
 	result = 0;
 	max_horiz_prod = compute_max_horiz_prod(solution, 4);

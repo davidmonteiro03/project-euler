@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2025/03/27 15:32:53 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/03/27 22:07:55 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ SOLVE_OBJ = $(patsubst %$(CPP_EXT), \
 
 # === FLAGS ================================================================== #
 
-CPP_FLAGS = -Wall -Wextra -Werror -std=c++2b
+CPP_FLAGS = -Wall -Wextra -Werror -std=c++2a
 MK_FLAGS  = -p
 RM_FLAGS  = -rfv
 
