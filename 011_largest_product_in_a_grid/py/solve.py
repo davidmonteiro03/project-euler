@@ -5,6 +5,7 @@ import sys
 
 def main():
     solution = includes.Solution(len(sys.argv), sys.argv)
+    solution.fill()
     solution.execute()
     sys.exit(solve_py.g_exit_status)
 
