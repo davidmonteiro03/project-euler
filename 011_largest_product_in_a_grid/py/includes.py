@@ -14,7 +14,7 @@ class Solution:
         self.__m = len(self.__grid)
         self.__n = len(self.__grid[0])
 
-    def __fillGrid(self, filename: str) -> None:
+    def __fill_grid(self, filename: str) -> None:
         if len(filename) < 1 or solve_py.g_exit_status != os.EX_OK:
             solve_py.g_exit_status = EX__BASE
             return
@@ -41,7 +41,7 @@ class Solution:
             ), file=sys.stderr)
             solve_py.g_exit_status = os.EX_USAGE
             return
-        self.__fillGrid(self.__argv[1])
+        self.__fill_grid(self.__argv[1])
 
     def __compute_max_horiz_prod(self, length: int) -> int:
         if length == 0:

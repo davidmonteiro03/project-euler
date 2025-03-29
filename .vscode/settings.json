@@ -1,0 +1,9 @@
+{
+	"files.associations": {
+		"*.sqlbook": "sql",
+		"*.ndjson": "jsonl",
+		"*.dbclient-js": "javascript",
+		"solve_c.h": "c",
+		"solution.h": "c"
+	}
+}
