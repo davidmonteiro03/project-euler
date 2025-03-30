@@ -22,13 +22,13 @@ class Solution:
                     numer_of_divisors += 2 - (j * j == solution)
                 j += 1
             if numer_of_divisors > n:
-                break	
+                break
         print("Solution for {0}: {1}".format(
             n, solution
         ), file=sys.stdout)
 
     def execute(self) -> None:
-        if self.__argc < 2:
+        if self.__argc != 2:
             print("usage: {0} <n>".format(
                 self.__argv[0]
             ), file=sys.stderr)

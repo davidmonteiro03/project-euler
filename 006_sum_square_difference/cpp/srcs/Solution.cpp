@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:25:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/03/27 15:38:16 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/03/30 15:01:11 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void Solution::__solve(const long long int &n)
 
 void Solution::execute(void) const
 {
-	if (this->__argc < 2)
+	if (this->__argc != 2)
 	{
 		std::cerr << "usage: " << this->__argv[0] << " <n>" << std::endl;
 		gExitStatus = EX_USAGE;

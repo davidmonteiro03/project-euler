@@ -28,7 +28,7 @@ class Solution:
         ), file=sys.stdout)
 
     def execute(self) -> None:
-        if self.__argc < 2:
+        if self.__argc != 2:
             print("usage: {0} <n>".format(
                 self.__argv[0]
             ), file=sys.stderr)
