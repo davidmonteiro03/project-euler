@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve_c.h                                          :+:      :+:    :+:   */
+/*   solution.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 09:41:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/03/31 08:28:16 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/03/31 10:39:32 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SOLVE_C_H
-# define SOLVE_C_H
+#ifndef SOLUTION_H
+# define SOLUTION_H
 
-# include "solution.h"
-# include <gmp.h>
-# include <stdio.h>
-# include <string.h>
-# include <strings.h>
-# include <sysexits.h>
+# include <sys/types.h>
 
-extern int	g_exit_status;
+typedef struct s_solution
+{
+	int				argc;
+	char			**argv;
+	size_t			n_lines;
+	long long int	**triangle;
+}					t_solution;
+
+void				solution_init(t_solution *solution, int argc, char **argv);
+void				solution_fill(t_solution *solution);
+void				solution_execute(t_solution *solution);
 
 #endif

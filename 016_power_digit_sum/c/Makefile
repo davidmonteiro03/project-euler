@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2025/03/29 15:48:01 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/03/31 08:41:14 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ SOLVE_O  = $(patsubst %$(C_EXT), \
 
 # === FLAGS ================================================================== #
 
-C_FLAGS  = -Wall -Wextra -Werror
+C_FLAGS  = -Wall -Wextra -Werror -std=c2x
 MK_FLAGS = -p
 RM_FLAGS = -rfv
 

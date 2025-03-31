@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 09:41:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/03/31 08:28:16 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/03/31 09:52:12 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 # define SOLVE_C_H
 
 # include "solution.h"
-# include <gmp.h>
 # include <stdio.h>
-# include <string.h>
+# include <stdlib.h>
 # include <strings.h>
 # include <sysexits.h>
 

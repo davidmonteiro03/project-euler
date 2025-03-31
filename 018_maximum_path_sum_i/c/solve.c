@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve_c.h                                          :+:      :+:    :+:   */
+/*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 09:41:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/03/31 08:28:16 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/03/26 08:55:57 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/03/31 09:55:56 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SOLVE_C_H
-# define SOLVE_C_H
+#include "includes/solve_c.h"
 
-# include "solution.h"
-# include <gmp.h>
-# include <stdio.h>
-# include <string.h>
-# include <strings.h>
-# include <sysexits.h>
+int	g_exit_status = EX_OK;
 
-extern int	g_exit_status;
+int	main(int argc, char **argv)
+{
+	t_solution	solution;
 
-#endif
+	solution_init(&solution, argc, argv);
+	solution_fill(&solution);
+	solution_execute(&solution);
+	return (g_exit_status);
+}

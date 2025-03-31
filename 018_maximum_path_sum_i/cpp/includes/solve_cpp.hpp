@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve_c.h                                          :+:      :+:    :+:   */
+/*   solve_cpp.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 09:41:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/03/31 08:28:16 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/03/26 10:23:06 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/03/31 11:58:17 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SOLVE_C_H
-# define SOLVE_C_H
+#pragma once
 
-# include "solution.h"
-# include <gmp.h>
-# include <stdio.h>
-# include <string.h>
-# include <strings.h>
-# include <sysexits.h>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <vector>
 
-extern int	g_exit_status;
+extern "C"
+{
+#include <sysexits.h>
+}
 
-#endif
+class Solution;
+
+#include "Solution.hpp"
+
+extern int gExitStatus;
