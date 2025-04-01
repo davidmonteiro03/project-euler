@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:53:20 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/03/31 10:43:07 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/01 10:22:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,25 @@ static long long int	ft_max(long long int a, long long int b)
 	return (b);
 }
 
-static long long int	solve_recursive(long long int **triangle, size_t i,
-		size_t j, size_t row, size_t col)
+static long long int	solve_recursive(long long int **triangle, size_t pos[2],
+		size_t row, size_t col)
 {
-	if (j == col)
+	if (pos[1] == col)
 		return (0);
-	if (i == row - 1)
-		return (triangle[i][j]);
-	return (triangle[i][j] + ft_max(solve_recursive(triangle, i + 1, j, row,
-				col), solve_recursive(triangle, i + 1, j + 1, row, col)));
+	if (pos[0] == row - 1)
+		return (triangle[pos[0]][pos[1]]);
+	return (triangle[pos[0]][pos[1]] + ft_max(solve_recursive(triangle,
+				(size_t [2]){pos[0] + 1, pos[1]}, row, col),
+			solve_recursive(triangle, (size_t [2]){pos[0] + 1, pos[1] + 1}, row,
+				col)));
 }
 
 static void	solve(t_solution *solution)
 {
 	long long int	result;
 
-	result = solve_recursive(solution->triangle, 0, 0, solution->n_lines,
-			solution->n_lines);
+	result = solve_recursive(solution->triangle, (size_t [2]){0, 0},
+			solution->n_lines, solution->n_lines);
 	fprintf(stdout, "Solution for [\"%s\", %zu]: %lld\n", solution->argv[1],
 		solution->n_lines, result);
 }

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:13:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/03/30 21:01:42 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/01 10:24:20 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static void	show_number(size_t *solution, long long int n)
 {
 	const long long int	d[3] = {n / 100, (n % 100) / 10, n % 10};
-	const char			*main_str[10] = {"zero", "one", "two", "three", "four", \
-					"five", "six", "seven", "eight", "nine"};
-	const char			*teen_str[10] = {"ten", "eleven", "twelve", "thirteen", \
-					"fourteen", "fifteen", "sixteen", "seventeen", "eighteen", \
-					"nineteen"};
-	const char			*ty_str[10] = {NULL, "ten", "twenty", "thirty", "forty", \
-					"fifty", "sixty", "seventy", "eighty", "ninety"};
+	const char			*main_str[10] = {"zero", "one", "two", "three", \
+					"four", "five", "six", "seven", "eight", "nine"};
+	const char			*teen_str[10] = {"ten", "eleven", "twelve", \
+					"thirteen", "fourteen", "fifteen", "sixteen", \
+					"seventeen", "eighteen", "nineteen"};
+	const char			*ty_str[10] = {NULL, "ten", "twenty", "thirty", \
+					"forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
 	char				tmp[BUFSIZ];
 
 	bzero(tmp, sizeof(tmp));

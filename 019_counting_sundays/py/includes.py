@@ -13,11 +13,9 @@ class Solution:
     def __count_first_sundays_from_to(sd: datetime.datetime,
                                       ed: datetime.datetime) -> int:
         count: int = 0
-        i: datetime.datetime = sd
-        limit: datetime.datetime = ed
-        while i <= ed:
-            count += (i.day == 1 and i.weekday() == 6)
-            i += datetime.timedelta(days=1)
+        while sd <= ed:
+            count += (sd.day == 1 and sd.weekday() == 6)
+            sd += datetime.timedelta(days=1)
         return count
 
     @staticmethod

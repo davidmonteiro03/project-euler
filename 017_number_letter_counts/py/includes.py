@@ -11,9 +11,14 @@ class Solution:
     @staticmethod
     def __show_number(n: int) -> int:
         d: list[int] = [n // 100, (n % 100) // 10, n % 10]
-        main_str: list[str] = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
-        teen_str: list[str] = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
-        ty_str: list[str] = [None, "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]
+        main_str: list[str] = ["zero", "one", "two", "three",
+                               "four", "five", "six", "seven",
+                               "eight", "nine"]
+        teen_str: list[str] = ["ten", "eleven", "twelve", "thirteen",
+                               "fourteen", "fifteen", "sixteen",
+                               "seventeen", "eighteen", "nineteen"]
+        ty_str: list[str] = [None, "ten", "twenty", "thirty", "forty",
+                             "fifty", "sixty", "seventy", "eighty", "ninety"]
         tmp: str = ""
         if d[0] > 0:
             tmp += f"{main_str[d[0]]}hundred"

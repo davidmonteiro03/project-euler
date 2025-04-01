@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:13:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/03/31 07:45:24 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/01 10:19:09 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static void	solve(long long int base, long long int exp)
 	i = 0;
 	while (i < len)
 		mpz_add_ui(solution, solution, pow_str[i++] - '0');
-	gmp_fprintf(stdout, "Solution for [%lld, %lld]: %Zd\n", base, exp, solution);
+	gmp_fprintf(stdout, "Solution for [%lld, %lld]: %Zd\n", base, exp,
+		solution);
 	mpz_clear(pow_value);
 	mpz_clear(solution);
 }

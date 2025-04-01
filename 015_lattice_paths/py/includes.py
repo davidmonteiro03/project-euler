@@ -12,7 +12,8 @@ class Solution:
     @staticmethod
     def __solve(k: int, n: int) -> None:
         solution: int = 0
-        solution = int(math.factorial(k + n) / (math.factorial(k) * math.factorial(n)))
+        solution = int(math.factorial(k + n) /
+                       (math.factorial(k) * math.factorial(n)))
         print("Solution for [{0}, {1}]: {2}".format(
             k, n, solution
         ), file=sys.stdout)

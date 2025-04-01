@@ -1,7 +1,6 @@
 import solve_py
 import os
 import sys
-import math
 
 
 class Solution:
