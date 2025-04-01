@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:13:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/03/31 18:30:44 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/01 09:21:58 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,67 +14,62 @@
 
 static long long int	get_month_days(long long int m, long long int y)
 {
+	if (y < 0)
+		return (0);
 	if (m == 2)
 		return (28 + (y % 400 == 0 || (y % 4 == 0 && y % 100 != 0)));
-	return (30 + ((m % 2 != 0 && m < 8) || (m >= 8 && m % 2 == 0)));
+	return (30 + ((m % 2 == 1 && m <= 7) || (m % 2 == 0 && m > 7)));
 }
 
-static bool	check_date(long long int *dt)
+static long long int	count_first_sundays_from_to(struct tm *sd,
+		struct tm *ed)
 {
-	long long int	d;
-	long long int	m;
-	long long int	y;
+	long long int	count;
+	struct tm		i;
+	struct tm		limit;
 
-	d = dt[0];
-	m = dt[1];
-	y = dt[2];
-	if (y < 0)
-		return (false);
-	return (m >= 1 && m <= 12 && d >= 1 && d <= get_month_days(m, y));
-}
-
-static long long int	count_first_sundays(long long int *s_dt,
-		long long int *e_dt)
-{
-	struct tm	tmp;
-	int			count;
-	const char	*week_days[7] = {"Monday", "Tuesday", "Wednesday", "Thursday", \
-			"Friday", "Saturday", "Sunday"};
-
-	(void)e_dt;
-	bzero(&tmp, sizeof(tmp));
-	tmp.tm_mday = s_dt[0];
-	tmp.tm_mon = s_dt[1] - 1;
-	tmp.tm_year = s_dt[2] - 1900;
-	mktime(&tmp);
-	fprintf(stdout, "tmp: %02d/%02d/%04d (%s)\n", tmp.tm_mday, tmp.tm_mon + 1,
-		tmp.tm_year + 1900, week_days[tmp.tm_wday - 1]);
 	count = 0;
+	if (sd == NULL || ed == NULL)
+		return (0);
+	bzero(&i, sizeof(i));
+	bzero(&limit, sizeof(limit));
+	memcpy(&i, sd, sizeof(i));
+	memcpy(&limit, ed, sizeof(limit));
+	mktime(&i);
+	while (i.tm_year < limit.tm_year || (i.tm_year == limit.tm_year
+			&& i.tm_yday <= limit.tm_yday))
+	{
+		count += (i.tm_mday++ == 1 && i.tm_wday == 0);
+		mktime(&i);
+	}
 	return (count);
 }
 
-static void	solve(long long int *s_dt, long long int *e_dt)
+static void	solve(struct tm *sd, struct tm *ed)
 {
 	long long int	solution;
-	char			s_dt_buf[BUFSIZ];
-	char			e_dt_buf[BUFSIZ];
+	char			sd_str[BUFSIZ];
+	char			ed_str[BUFSIZ];
 
 	solution = 0;
-	bzero(s_dt_buf, sizeof(s_dt_buf));
-	bzero(e_dt_buf, sizeof(e_dt_buf));
-	if (check_date(s_dt) == false || check_date(e_dt) == false)
-		return (g_exit_status = EX__BASE, (void)0);
-	solution = count_first_sundays(s_dt, e_dt);
-	sprintf(s_dt_buf, "%02lld/%02lld/%04lld", s_dt[0], s_dt[1], s_dt[2]);
-	sprintf(e_dt_buf, "%02lld/%02lld/%04lld", e_dt[0], e_dt[1], e_dt[2]);
-	fprintf(stdout, "Solution for [%s - %s]: %lld\n", s_dt_buf, e_dt_buf,
-		solution);
+	if (sd == NULL || ed == NULL)
+		return ;
+	if (sd->tm_mday > get_month_days(sd->tm_mon + 1, sd->tm_year + 1900)
+		|| ed->tm_mday > get_month_days(ed->tm_mon + 1, ed->tm_year + 1900))
+		return ;
+	bzero(sd_str, sizeof(sd_str));
+	bzero(ed_str, sizeof(ed_str));
+	strftime(sd_str, sizeof(sd_str), "%d/%m/%Y", sd);
+	strftime(ed_str, sizeof(ed_str), "%d/%m/%Y", ed);
+	solution = count_first_sundays_from_to(sd, ed);
+	fprintf(stdout, "Solution for [%s - %s]: %lld\n", sd_str, ed_str, solution);
 }
 
 void	solution_execute(t_solution *solution)
 {
-	long long int	s_dt[3];
-	long long int	e_dt[3];
+	struct tm	sd;
+	struct tm	ed;
+	char		*c[2];
 
 	if (solution == NULL)
 		return ;
@@ -85,17 +80,16 @@ void	solution_execute(t_solution *solution)
 		g_exit_status = EX_USAGE;
 		return ;
 	}
-	bzero(s_dt, sizeof(s_dt));
-	bzero(e_dt, sizeof(e_dt));
-	if (sscanf(solution->argv[1], "%lld - %lld - %lld", &s_dt[0], &s_dt[1],
-			&s_dt[2]) == -1 || sscanf(solution->argv[2], "%lld - %lld - %lld",
-			&e_dt[0], &e_dt[1], &e_dt[2]) == -1)
+	bzero(&sd, sizeof(sd));
+	bzero(&ed, sizeof(ed));
+	c[0] = strptime(solution->argv[1], "%d %b %Y", &sd);
+	c[1] = strptime(solution->argv[2], "%d %b %Y", &ed);
+	if (c[0] == NULL || c[1] == NULL || *c[0] != '\0' || *c[1] != '\0')
 	{
-		fprintf(stderr,
-			"%s: error: '%s' and '%s' are not both in a valid date format.\n",
-			solution->argv[0], solution->argv[1], solution->argv[2]);
+		fprintf(stderr, "%s: error: '%s' and '%s' are not in a valid \
+date format.\n", solution->argv[0], solution->argv[1], solution->argv[2]);
 		g_exit_status = EX_DATAERR;
 		return ;
 	}
-	solve(s_dt, e_dt);
+	solve(&sd, &ed);
 }
