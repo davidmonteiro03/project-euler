@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve_c.h                                          :+:      :+:    :+:   */
+/*   solve.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 09:41:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/15 15:05:57 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/03/26 08:55:57 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/03/27 14:43:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SOLVE_C_H
-# define SOLVE_C_H
+#include "includes/solve_cpp.hpp"
 
-# include "solution.h"
-# include <gmp.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <string.h>
-# include <strings.h>
-# include <sysexits.h>
+int gExitStatus = EX_OK;
 
-extern int	g_exit_status;
-
-#endif
+int main(int argc, char **argv)
+{
+	Solution solution(argc, argv);
+	solution.execute();
+	return gExitStatus;
+}

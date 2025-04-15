@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve_c.h                                          :+:      :+:    :+:   */
+/*   Solution.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 09:41:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/15 15:05:57 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/03/26 10:20:12 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/03/26 10:29:56 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SOLVE_C_H
-# define SOLVE_C_H
+#pragma once
 
-# include "solution.h"
-# include <gmp.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <string.h>
-# include <strings.h>
-# include <sysexits.h>
+class Solution
+{
+public:
+	Solution(int, char **);
+	Solution(const Solution &);
+	Solution &operator=(const Solution &);
+	~Solution();
 
-extern int	g_exit_status;
+	void execute(void) const;
 
-#endif
+private:
+	int __argc;
+	char **__argv;
+
+	static void __solve(const long long int &);
+};

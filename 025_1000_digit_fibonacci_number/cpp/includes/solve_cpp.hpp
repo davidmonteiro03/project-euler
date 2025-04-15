@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve_c.h                                          :+:      :+:    :+:   */
+/*   solve_cpp.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 09:41:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/15 15:05:57 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/03/26 10:23:06 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/15 15:12:46 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SOLVE_C_H
-# define SOLVE_C_H
+#pragma once
 
-# include "solution.h"
-# include <gmp.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <string.h>
-# include <strings.h>
-# include <sysexits.h>
+#include <iostream>
+#include <sstream>
+#include <boost/multiprecision/cpp_int.hpp>
 
-extern int	g_exit_status;
+extern "C"
+{
+#include <sysexits.h>
+}
 
-#endif
+class Solution;
+
+#include "Solution.hpp"
+
+extern int gExitStatus;
