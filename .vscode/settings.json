@@ -1,0 +1,23 @@
+{
+	"files.associations": {
+		"*.sqlbook": "sql",
+		"*.ndjson": "jsonl",
+		"*.dbclient-js": "javascript",
+		"solve_c.h": "c",
+		"stdio.h": "c",
+		"strings.h": "c",
+		"stdbool.h": "c",
+		"solution.h": "c",
+		"stdlib.h": "c",
+		"array": "c",
+		"bitset": "c",
+		"string_view": "c",
+		"initializer_list": "c",
+		"ranges": "c",
+		"span": "c",
+		"utility": "c",
+		"random": "c",
+		"chrono": "c",
+		"algorithm": "c"
+	}
+}
