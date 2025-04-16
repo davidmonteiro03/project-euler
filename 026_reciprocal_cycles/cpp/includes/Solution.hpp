@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:20:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/15 18:29:13 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/16 11:23:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ public:
 private:
 	int __argc;
 	char **__argv;
+
+	static std::string __decimalPeriod(const long long int &,
+									   const long long int &);
+	static std::size_t __reciprocalCycle(const long long int &,
+										 const long long int &);
 
 	static void __solve(const long long int &);
 };

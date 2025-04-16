@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 09:41:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/15 19:04:28 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/16 10:24:40 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 # define SOLVE_C_H
 
 # include "solution.h"
+# include <stdbool.h>
 # include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <strings.h>
 # include <sysexits.h>
 
 extern int	g_exit_status;
