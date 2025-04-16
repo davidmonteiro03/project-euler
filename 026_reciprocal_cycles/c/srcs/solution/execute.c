@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:13:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/16 11:35:03 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/16 14:39:38 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ static char	*decimal_period(long long int remainder, long long int divisor)
 	storage = (long long int *)malloc(sizeof(long long int) * divisor);
 	if (storage == NULL)
 		return (NULL);
-	memset(storage, -1, sizeof(long long int) * divisor);
+	i = 0;
+	while (i < divisor)
+		storage[i++] = -1;
 	decimal = strdup("");
 	i = 0;
 	while (remainder != 0 && storage[remainder] == -1)
