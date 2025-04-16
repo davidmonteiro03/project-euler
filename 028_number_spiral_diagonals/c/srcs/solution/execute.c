@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:13:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/16 16:51:07 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/16 16:52:19 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void	solution_execute(t_solution *solution)
 	size = 0;
 	if (sscanf(solution->argv[1], "%lld", &size) == -1)
 	{
-		fprintf(stderr, "%s: error: '%s' is not both integers.\n",
+		fprintf(stderr, "%s: error: '%s' is not integer.\n",
 			solution->argv[0], solution->argv[1]);
 		g_exit_status = EX_DATAERR;
 		return ;
