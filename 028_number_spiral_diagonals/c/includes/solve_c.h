@@ -6,17 +6,17 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 09:41:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/16 16:37:16 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/17 08:20:23 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SOLVE_C_H
 # define SOLVE_C_H
 
+# include "help.h"
 # include "solution.h"
 # include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
 # include <strings.h>
 # include <sysexits.h>
 

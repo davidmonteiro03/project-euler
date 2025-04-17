@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 08:55:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/03/27 14:42:20 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/17 08:31:47 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char **argv)
 	t_solution	solution;
 
 	solution_init(&solution, argc, argv);
+	solution_fill(&solution);
 	solution_execute(&solution);
 	return (g_exit_status);
 }

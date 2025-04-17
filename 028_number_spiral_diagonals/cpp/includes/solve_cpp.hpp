@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solution.h                                         :+:      :+:    :+:   */
+/*   solve_cpp.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 09:41:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/17 08:31:28 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/03/26 10:23:06 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/17 08:39:59 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SOLUTION_H
-# define SOLUTION_H
+#pragma once
 
-# include <stddef.h>
+#include <iostream>
+#include <sstream>
+#include <vector>
 
-typedef struct s_solution
+extern "C"
 {
-	int				argc;
-	char			**argv;
-	long long int	**spiral;
-	size_t			m;
-	size_t			n;
-}					t_solution;
+#include <sysexits.h>
+}
 
-void				solution_init(t_solution *solution, int argc, char **argv);
-void				solution_fill(t_solution *solution);
-void				solution_execute(t_solution *solution);
+class Solution;
 
-#endif
+#include "Solution.hpp"
+
+extern int gExitStatus;
