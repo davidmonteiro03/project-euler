@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2025/04/17 13:48:38 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/04/17 13:48:06 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,7 @@ $(LIB): $(OBJS)
 	@$(AR_RCS) $(LIB) $(OBJS) > /dev/null 2>&1
 
 $(NAME): $(LIB) $(SOLVE_O)
-	@$(CC) $(C_FLAGS) $(SOLVE_O) $(LIB) -lgmp -o $(NAME) > /dev/null 2>&1
+	@$(CC) $(C_FLAGS) $(SOLVE_O) $(LIB) -lm -o $(NAME) > /dev/null 2>&1
 
 clean:
 	@$(RM) $(RM_FLAGS) $(OBJS_D)
