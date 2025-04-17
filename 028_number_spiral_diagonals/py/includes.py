@@ -1,7 +1,6 @@
 import solve_py
 import os
 import sys
-import math
 
 
 class Solution:
@@ -13,7 +12,10 @@ class Solution:
         self.__n = 0
 
     def __fillSpiral(self) -> None:
-        if len(self.__spiral) < 1 or self.__m == 0 or self.__n == 0 or self.__m % 2 == 0 or self.__n % 2 == 0 or self.__m != self.__n:
+        if len(self.__spiral) < 1 or \
+           self.__m == 0 or self.__n == 0 or \
+           self.__m % 2 == 0 or self.__n % 2 == 0 or \
+           self.__m != self.__n:
             return
         x: int = self.__m // 2
         y: int = self.__n // 2
@@ -43,7 +45,10 @@ class Solution:
     @staticmethod
     def __solve(spiral: list[list[int]], m: int, n: int) -> None:
         solution: int = 0
-        if len(spiral) < 1 or m == 0 or n == 0 or m % 2 == 0 or n % 2 == 0 or m != n:
+        if len(spiral) < 1 or \
+           m == 0 or n == 0 or \
+           m % 2 == 0 or n % 2 == 0 or \
+           m != n:
             return
         for i in range(0, m, 1):
             for j in range(0, n, 1):
@@ -81,6 +86,6 @@ class Solution:
             return
         self.__m = m
         self.__n = n
-        self.__spiral = [[0 for _ in range(self.__n)] for __ in range(self.__m)]
+        self.__spiral = [[0 for _ in range(self.__n)]
+                         for __ in range(self.__m)]
         self.__fillSpiral()
-
