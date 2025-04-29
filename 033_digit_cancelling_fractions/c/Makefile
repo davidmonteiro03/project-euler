@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2025/04/28 13:58:09 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/04/29 18:28:44 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,13 +70,13 @@ $(OBJS_D)/%$(O_EXT): %$(C_EXT) $(INCS)
 
 $(OBJS_D)/$(SRCS_D)/%$(O_EXT): $(SRCS_D)/%$(C_EXT) $(INCS)
 	@$(MK) $(MK_FLAGS) $(dir $@) > /dev/null 2>&1
-	@$(CC) $(C_FLAGS) -c $< -o $@ > /dev/null 2>&1
+	@$(CC) $(C_FLAGS) -c $< -o $@ #> /dev/null 2>&1
 
 $(LIB): $(OBJS)
 	@$(AR_RCS) $(LIB) $(OBJS) > /dev/null 2>&1
 
 $(NAME): $(LIB) $(SOLVE_O)
-	@$(CC) $(C_FLAGS) $(SOLVE_O) $(LIB) -o $(NAME) > /dev/null 2>&1
+	@$(CC) $(C_FLAGS) $(SOLVE_O) $(LIB) -lgmp -lm -o $(NAME) > /dev/null 2>&1
 
 clean:
 	@$(RM) $(RM_FLAGS) $(OBJS_D)
