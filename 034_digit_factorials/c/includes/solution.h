@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve_cpp.hpp                                      :+:      :+:    :+:   */
+/*   solution.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 10:23:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/30 12:57:11 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/03/26 09:41:55 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/03/27 14:23:19 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef SOLUTION_H
+# define SOLUTION_H
 
-#include <iostream>
-#include <sstream>
-#include <boost/multiprecision/cpp_int.hpp>
-
-extern "C"
+typedef struct s_solution
 {
-#include <sysexits.h>
-}
+	int		argc;
+	char	**argv;
+}			t_solution;
 
-class Solution;
+void		solution_init(t_solution *solution, int argc, char **argv);
+void		solution_execute(t_solution *solution);
 
-#include "Solution.hpp"
-
-extern int gExitStatus;
+#endif

@@ -6,78 +6,77 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2025/04/30 13:01:18 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/04/30 13:01:20 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # === BINARY ================================================================= #
 
-NAME      = solve_cpp
-LIB       = $(NAME).a
+NAME     = solve_c
+LIB      = $(NAME).a
 
 # === COMMANDS =============================================================== #
 
-CPP       = c++
-MK        = mkdir
-RM        = rm
-AR_RCS    = ar rcs
+CC       = cc
+MK       = mkdir
+RM       = rm
+AR_RCS   = ar rcs
 
 # === DIRECTORIES ============================================================ #
 
-INCS_D    = includes
-SRCS_D    = srcs
-OBJS_D    = objs
+INCS_D   = includes
+SRCS_D   = srcs
+OBJS_D   = objs
 
 # === EXTENSIONS ============================================================= #
 
-CPP_EXT   = .cpp
-HPP_EXT   = .hpp
-OBJ_EXT   = .o
+C_EXT    = .c
+H_EXT    = .h
+O_EXT    = .o
 
 # === FILES ================================================================== #
 
-CLASSES   = Solution
-CPPFILES  = $(CLASSES)
-HPPFILES  = $(NAME) $(CLASSES)
+CFILES   = solution/init solution/execute
+HFILES   = $(NAME) solution
 
-INCS      = $(addprefix $(INCS_D)/, \
-                        $(addsuffix $(HPP_EXT), \
-                        $(HPPFILES)))
-SRCS      = $(addprefix $(SRCS_D)/, \
-                        $(addsuffix $(CPP_EXT), \
-                        $(CPPFILES)))
-OBJS      = $(patsubst $(SRCS_D)/%$(CPP_EXT), \
-                       $(OBJS_D)/$(SRCS_D)/%$(OBJ_EXT), \
-                       $(SRCS))
+INCS     = $(addprefix $(INCS_D)/, \
+                       $(addsuffix $(H_EXT), \
+                       $(HFILES)))
+SRCS     = $(addprefix $(SRCS_D)/, \
+                       $(addsuffix $(C_EXT), \
+                       $(CFILES)))
+OBJS     = $(patsubst $(SRCS_D)/%$(C_EXT), \
+                      $(OBJS_D)/$(SRCS_D)/%$(O_EXT), \
+                      $(SRCS))
 
-SOLVE_CPP = solve$(CPP_EXT)
-SOLVE_OBJ = $(patsubst %$(CPP_EXT), \
-                       $(OBJS_D)/%$(OBJ_EXT), \
-                       $(SOLVE_CPP))
+SOLVE_C  = solve$(C_EXT)
+SOLVE_O  = $(patsubst %$(C_EXT), \
+                      $(OBJS_D)/%$(O_EXT), \
+                      $(SOLVE_C))
 
 # === FLAGS ================================================================== #
 
-CPP_FLAGS = -Wall -Wextra -Werror -std=c++2a
-MK_FLAGS  = -p
-RM_FLAGS  = -rfv
+C_FLAGS  = -Wall -Wextra -Werror
+MK_FLAGS = -p
+RM_FLAGS = -rfv
 
 # === RULES ================================================================== #
 
 all: $(NAME)
 
-$(OBJS_D)/%$(OBJ_EXT): %$(CPP_EXT) $(INCS)
+$(OBJS_D)/%$(O_EXT): %$(C_EXT) $(INCS)
 	@$(MK) $(MK_FLAGS) $(dir $@) > /dev/null 2>&1
-	@$(CPP) $(CPP_FLAGS) -c $< -o $@ > /dev/null 2>&1
+	@$(CC) $(C_FLAGS) -c $< -o $@ > /dev/null 2>&1
 
-$(OBJS_D)/$(SRCS_D)/%$(OBJ_EXT): $(SRCS_D)/%$(CPP_EXT) $(INCS)
+$(OBJS_D)/$(SRCS_D)/%$(O_EXT): $(SRCS_D)/%$(C_EXT) $(INCS)
 	@$(MK) $(MK_FLAGS) $(dir $@) > /dev/null 2>&1
-	@$(CPP) $(CPP_FLAGS) -c $< -o $@ > /dev/null 2>&1
+	@$(CC) $(C_FLAGS) -c $< -o $@ > /dev/null 2>&1
 
 $(LIB): $(OBJS)
 	@$(AR_RCS) $(LIB) $(OBJS) > /dev/null 2>&1
 
-$(NAME): $(LIB) $(SOLVE_OBJ)
-	@$(CPP) $(CPP_FLAGS) $(SOLVE_OBJ) $(LIB) -o $(NAME) > /dev/null 2>&1
+$(NAME): $(LIB) $(SOLVE_O)
+	@$(CC) $(C_FLAGS) $(SOLVE_O) $(LIB) -lgmp -o $(NAME) > /dev/null 2>&1
 
 clean:
 	@$(RM) $(RM_FLAGS) $(OBJS_D)

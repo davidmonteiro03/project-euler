@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve_cpp.hpp                                      :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 10:23:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/30 12:57:11 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/03/26 09:50:57 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/03/26 10:17:57 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "../../includes/solve_c.h"
 
-#include <iostream>
-#include <sstream>
-#include <boost/multiprecision/cpp_int.hpp>
-
-extern "C"
+void	solution_init(t_solution *solution, int argc, char **argv)
 {
-#include <sysexits.h>
+	if (solution == NULL)
+		return ;
+	solution->argc = argc;
+	solution->argv = argv;
 }
-
-class Solution;
-
-#include "Solution.hpp"
-
-extern int gExitStatus;

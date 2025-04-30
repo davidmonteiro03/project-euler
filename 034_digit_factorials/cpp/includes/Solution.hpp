@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve_cpp.hpp                                      :+:      :+:    :+:   */
+/*   Solution.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 10:23:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/30 12:57:11 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/03/26 10:20:12 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/30 12:51:39 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <iostream>
-#include <sstream>
-#include <boost/multiprecision/cpp_int.hpp>
-
-extern "C"
+class Solution
 {
-#include <sysexits.h>
-}
+public:
+	Solution(int, char **);
+	Solution(const Solution &);
+	Solution &operator=(const Solution &);
+	~Solution();
 
-class Solution;
+	void execute(void) const;
 
-#include "Solution.hpp"
+private:
+	int __argc;
+	char **__argv;
 
-extern int gExitStatus;
+	static void __solve(const long long int &);
+};
