@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 08:08:38 by dcaetano          #+#    #+#              #
-#    Updated: 2025/04/29 18:28:44 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/04/30 09:30:20 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,8 +36,8 @@ O_EXT    = .o
 
 # === FILES ================================================================== #
 
-CFILES   = solution/init solution/execute
-HFILES   = $(NAME) solution
+CFILES   = solution/init solution/execute solution/help
+HFILES   = $(NAME) solution help
 
 INCS     = $(addprefix $(INCS_D)/, \
                        $(addsuffix $(H_EXT), \
@@ -70,7 +70,7 @@ $(OBJS_D)/%$(O_EXT): %$(C_EXT) $(INCS)
 
 $(OBJS_D)/$(SRCS_D)/%$(O_EXT): $(SRCS_D)/%$(C_EXT) $(INCS)
 	@$(MK) $(MK_FLAGS) $(dir $@) > /dev/null 2>&1
-	@$(CC) $(C_FLAGS) -c $< -o $@ #> /dev/null 2>&1
+	@$(CC) $(C_FLAGS) -c $< -o $@ > /dev/null 2>&1
 
 $(LIB): $(OBJS)
 	@$(AR_RCS) $(LIB) $(OBJS) > /dev/null 2>&1

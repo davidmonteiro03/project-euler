@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:13:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/29 20:06:55 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/30 09:30:12 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,37 +92,31 @@ static long long int	*compute_ac(long long int n, long long int d)
 
 static void	solve(long long int n)
 {
-	long long int	solution;
-	long long int	f[2];
-	long long int	*ac;
-	mpq_t			q[2];
+	mpz_t	solution;
+	mpq_t	product;
+	t_help	help;
 
-	mpq_init(q[1]);
-	mpq_set_ui(q[1], 1, 1);
-	f[0] = 0;
-	while (++f[0] < (long long int)pow(10, n))
+	mpz_init_set_ui(solution, 0);
+	mpq_init(product);
+	mpq_set_ui(product, 1, 1);
+	help.f[0] = 0;
+	while (++help.f[0] < (long long int)pow(10, n))
 	{
-		f[1] = f[0];
-		while (++f[1] < (long long int)pow(10, n))
+		help.f[1] = help.f[0];
+		while (++help.f[1] < (long long int)pow(10, n))
 		{
-			ac = compute_ac(f[0], f[1]);
-			if (ac == NULL)
+			help.ac = compute_ac(help.f[0], help.f[1]);
+			if (help.ac == NULL)
 				continue ;
-			if ((f[0] != ac[0] || f[1] != ac[1]) && ((double)f[0]
-					/ (double)f[1]) == ((double)ac[0] / (double)ac[1]))
-			{
-				mpq_init(q[0]);
-				mpq_set_ui(q[0], f[0], f[1]);
-				mpq_canonicalize(q[0]);
-				mpq_mul(q[1], q[1], q[0]);
-				mpq_clear(q[0]);
-			}
-			free(ac);
+			help_compute(product, &help);
+			free(help.ac);
 		}
 	}
-	solution = mpz_get_ui(mpq_denref(q[1]));
-	fprintf(stdout, "Solution for %lld: %lld\n", n, solution);
-	mpq_clear(q[1]);
+	mpq_canonicalize(product);
+	mpz_set(solution, mpq_denref(product));
+	gmp_fprintf(stdout, "Solution for %lld: %Zd\n", n, solution);
+	mpq_clear(product);
+	mpz_clear(solution);
 }
 
 void	solution_execute(t_solution *solution)
