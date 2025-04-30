@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:25:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/30 10:22:24 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/30 14:48:16 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ std::pair<long long int, long long int> Solution::__computeAC(const long long in
 	denominatorBeforeSs << denominator;
 	std::string numeratorStr = numeratorBeforeSs.str(), denominatorStr = denominatorBeforeSs.str();
 	Solution::__removeCommon(numeratorStr, denominatorStr);
-	std::stringstream numeratorAfterSs, denominatorAfterSs;
-	numeratorAfterSs << numeratorStr;
-	denominatorAfterSs << denominatorStr;
+	std::stringstream numeratorAfterSs(numeratorStr), denominatorAfterSs(denominatorStr);
 	numeratorAfterSs >> result.first;
 	denominatorAfterSs >> result.second;
 	return result;
