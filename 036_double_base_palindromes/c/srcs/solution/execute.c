@@ -6,13 +6,13 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:13:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/30 16:16:27 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/05/19 15:18:21 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/solve_c.h"
 
-static bool is_palindrome(const char *str)
+static bool	is_palindrome(const char *str)
 {
 	size_t	i;
 	size_t	len;
